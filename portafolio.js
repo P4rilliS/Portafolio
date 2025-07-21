@@ -12,6 +12,7 @@ const listaIdiomas = document.querySelector(".listaIdiomas")
 const idioma = document.querySelectorAll(".idioma")
 const idiomaSeleccionado = document.querySelector(".idiomaSeleccionado")
 const iconoMenu = document.querySelector(".iconoMenu")
+const cerrarMenu = document.querySelector(".menuMovil")
 const secciones = document.querySelector(".secciones")
 
 tema.addEventListener("click", ()=>{
@@ -66,4 +67,16 @@ opcionesArray.forEach((idioma)=>{
 
 iconoMenu.addEventListener("click", () => {
   secciones.classList.toggle("menuActivo");
+  if (secciones.classList.contains("menuActivo")) {
+    iconoMenu.style.display = "none";
+    cerrarMenu.style.visibility = "visible";
+  } else {
+    iconoMenu.style.display = "block";
+    cerrarMenu.style.visibility = "hidden";
+  }
+});
+cerrarMenu.addEventListener("click", () => {
+  secciones.classList.remove("menuActivo");
+  iconoMenu.style.display = "block";
+  cerrarMenu.style.visibility = "hidden";
 });
