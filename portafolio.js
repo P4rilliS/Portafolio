@@ -1,8 +1,8 @@
 const portafolio = document.querySelector(".portafolio")
-const inicio = document.querySelector(".inicio")
-const tecnologias = document.querySelector(".tecnologias")
-const proyecto = document.querySelector(".proyectos")
-const contacto = document.querySelector(".contacto")
+const textoIinicio = document.querySelector(".textoIinicio")
+const textoTecnologias = document.querySelector(".textoTecnologias")
+const textoProyecto = document.querySelector(".textoProyecto")
+const taxtoContacto = document.querySelector(".textoContacto")
 const sol = document.querySelector(".sol")
 const luna = document.querySelector(".luna")
 const tema = document.querySelector(".iconosTema")
@@ -34,18 +34,18 @@ opcionesArray.forEach((idioma)=>{
     switch(idiomaSeleccionado) {
       case "español":
         portafolio.textContent = "Portafolio";
-        inicio.textContent = "Inicio";
-        tecnologias.textContent = "Tecnologías";
-        proyecto.textContent = "Proyectos";
-        contacto.textContent = "Contacto";
+        textoIinicio.textContent = "Inicio";
+        textoTecnologias.textContent = "Tecnologías";
+        textoProyecto.textContent = "Proyectos";
+        textoContacto.textContent = "Contacto";
         document.title = "Portafolio - Español";
         break;
       case "english":
         portafolio.textContent = "Portfolio";
-        inicio.textContent = "Home";
-        tecnologias.textContent = "Technologies";
-        proyecto.textContent = "Projects";
-        contacto.textContent = "Contact";
+        textoInicio.textContent = "Home";
+        textoTecnologias.textContent = "Technologies";
+        textProyecto.textContent = "Projects";
+        textoContacto.textContent = "Contact";
         document.title = "Portfolio - English";
         break;
     }
