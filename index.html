@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sergio Parilli | Portafolio</title>
+  <link rel="stylesheet" href="portafolio.css">
+  <style>
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+</style>
+</head>
+<body>
+  <header class="header">
+    <nav class="barraNavegacion">
+      <a href="index.html">
+        <h1 class="portafolio">P</h1>
+      </a>
+      <div class="iconos">
+        <div class="iconosTema">
+          <div class="circulo">
+            <ion-icon class="sol" name="sunny"></ion-icon>
+            <ion-icon class="luna" name="moon"></ion-icon>
+          </div>
+        </div>
+        <div class="cambiarIdioma">
+          <div class="bandera">
+            <ion-icon class="mundo" name="globe"></ion-icon>
+            <img class="idiomaSeleccionado" src="" alt="">
+          </div>
+          <ul class="listaIdiomas">
+            <li class="idioma">
+              <a href="#">
+                <img src="./banderas/español.svg" alt="">
+                <span>Español</span>
+              </a>
+            </li>
+            <li class="idioma">
+              <a href="#">
+                <img src="./banderas/english.svg" alt="">
+                <span>English</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="iconoMenu">
+          <i class="bi bi-list"></i>
+        </div>
+      </div>
+        <ul class="secciones">
+          <li class="seccion inicio">Inicio</li>
+          <li class="seccion tecnologias">Sobre Mi</li>
+          <li class="seccion proyectos">Proyectos</li>
+          <li class="seccion contacto">Contacto</li>
+        </ul>
+    </nav>
+  </header>
+  <main class="main">
+    <div class="presentacion">
+      <div class="textoPresentacion">
+        <h1 class="titulo">Sergio Parilli</h1>
+        <p class="descripcion">Desarrollador Web, Full-Stack</p>
+        
+      </div>
+      <div class="imagenPresentacion">
+        <img src="./IMG/perfil.jpg" alt="Sergio Parilli">
+      </div>
+      <div>
+      </div>
+    </div>
+    <div class="redesSociales">
+      <span class="spanIzquierdo"></span>
+      <a class="botonRedes" href="#">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a class="botonRedes" href="#">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a class="botonRedes" href="#">
+        <i class="bi bi-github"></i>
+      </a>
+      <span class="spanDerecho"></span>
+    </div>
+  </main>
+  <script src="./portafolio.js"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>

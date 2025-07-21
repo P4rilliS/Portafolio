@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Juan Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style id="app-style">
+    :root {
+      --primary-color: #4f46e5;
+      --secondary-color: #4338ca;
+      --accent-color: #6366f1;
+      --background-light: #f9fafb;
+      --text-light: #1f2937;
+      --text-light-secondary: #4b5563;
+      --background-dark: #111827;
+      --text-dark: #f9fafb;
+      --text-dark-secondary: #9ca3af;
+      --card-light: #ffffff;
+      --card-dark: #1f2937;
+      --border-light: #e5e7eb;
+      --border-dark: #374151;
+      --transition-default: all 0.3s ease-in-out;
+      --font-primary: 'Poppins', sans-serif;
+      --font-secondary: 'Roboto', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      transition: var(--transition-default);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body.light-mode {
+      background-color: var(--background-light);
+      color: var(--text-light);
+    }
+
+    body.dark-mode {
+      background-color: var(--background-dark);
+      color: var(--text-dark);
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 100px 0 80px;
+      scroll-margin-top: 70px;
+    }
+
+    /* Navbar */
+    .navbar {
+      transition: var(--transition-default);
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .light-mode .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .dark-mode .navbar {
+      background-color: rgba(17, 24, 39, 0.95);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .nav-link {
+      font-weight: 500;
+      position: relative;
+      margin: 0 10px;
+      transition: var(--transition-default);
+    }
+
+    .light-mode .nav-link {
+      color: var(--text-light);
+    }
+
+    .dark-mode .nav-link {
+      color: var(--text-dark);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-color) !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition-default);
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Toggle buttons */
+    .mode-toggle, .lang-toggle {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      border-radius: 50%;
+      transition: var(--transition-default);
+    }
+
+    .mode-toggle:hover, .lang-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p.lead {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+
+    .light-mode .hero p.lead {
+      color: var(--text-light-secondary);
+    }
+
+    .dark-mode .hero p.lead {
+      color: var(--text-dark-secondary);
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: var(--transition-default);
+      text-decoration: none;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary-color);
+    }
+
+    .light-mode .btn-outline {
+      color: var(--text-light);
+    }
+
+    .dark-mode .btn-outline {
+      color: var(--text-dark);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: white !important;
+      transform: translateY(-5px);
+    }
+
+    .hero-shape {
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    .social-links {
+      display: flex;
+      margin-top: 30px;
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+      transition: var(--transition-default);
+    }
+
+    .light-mode .social-icon {
+      background-color: var(--card-light);
+      color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .social-icon {
+      background-color: var(--card-dark);
+      color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px) rotate(360deg);
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* Projects Section */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 70px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-color), transparent);
+    }
+
+    .project-card {
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition-default);
+      height: 100%;
+    }
+
+    .light-mode .project-card {
+      background-color: var(--card-light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-light);
+    }
+
+    .dark-mode .project-card {
+      background-color: var(--card-dark);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-dark);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 20px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 15px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .light-mode .project-tag {
+      background-color: rgba(79, 70, 229, 0.1);
+      color: var(--primary-color);
+    }
+
+    .dark-mode .project-tag {
+      background-color: rgba(99, 102, 241, 0.2);
+      color: var(--accent-color);
+    }
+
+    .project-links {
+      margin-top: 15px;
+    }
+
+    .project-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-right: 15px;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition-default);
+      text-decoration: none;
+    }
+
+    .light-mode .project-link {
+      color: var(--primary-color);
+    }
+
+    .dark-mode .project-link {
+      color: var(--accent-color);
+    }
+
+    .project-link i {
+      margin-left: 5px;
+      transition: var(--transition-default);
+    }
+
+    .project-link:hover {
+      opacity: 0.8;
+    }
+
+    .project-link:hover i {
+      transform: translateX(5px);
+    }
+
+    /* About Section */
+    .profile-img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      object-fit: cover;
+      transition: var(--transition-default);
+    }
+
+    .light-mode .profile-img {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .profile-img {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-img:hover {
+      transform: scale(1.03);
+    }
+
+    .about-text {
+      margin-bottom: 30px;
+    }
+
+    .skill-item {
+      margin-bottom: 20px;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .light-mode .skill-bar {
+      background-color: #e5e7eb;
+    }
+
+    .dark-mode .skill-bar {
+      background-color: #374151;
+    }
+
+    .skill-progress {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      transition: width 1.5s ease-in-out;
+    }
+
+    /* Contact Section */
+    .contact-form .form-control {
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      transition: var(--transition-default);
+      border: 2px solid transparent;
+    }
+
+    .light-mode .contact-form .form-control {
+      background-color: #f3f4f6;
+      color: var(--text-light);
+    }
+
+    .dark-mode .contact-form .form-control {
+      background-color: #1f2937;
+      color: var(--text-dark);
+      border-color: #374151;
+    }
+
+    .contact-form .form-control:focus {
+      box-shadow: none;
+      border-color: var(--primary-color);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: none;
+    }
+
+    .contact-btn {
+      padding: 12px 30px;
+      border-radius: 30px;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .light-mode .info-icon {
+      background-color: rgba(79, 70, 229, 0.1);
+      color: var(--primary-color);
+    }
+
+    .dark-mode .info-icon {
+      background-color: rgba(99, 102, 241, 0.2);
+      color: var(--accent-color);
+    }
+
+    .info-text h5 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .light-mode .info-text p {
+      color: var(--text-light-secondary);
+    }
+
+    .dark-mode .info-text p {
+      color: var(--text-dark-secondary);
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .light-mode footer {
+      background-color: #f3f4f6;
+    }
+
+    .dark-mode footer {
+      background-color: #1f2937;
+    }
+
+    .footer-social {
+      margin-bottom: 20px;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 0 10px;
+      transition: var(--transition-default);
+    }
+
+    .light-mode .footer-social a {
+      background-color: var(--card-light);
+      color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .footer-social a {
+      background-color: var(--card-dark);
+      color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-5px) rotate(360deg);
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .footer-text {
+      font-size: 0.875rem;
+    }
+
+    .light-mode .footer-text {
+      color: var(--text-light-secondary);
+    }
+
+    .dark-mode .footer-text {
+      color: var(--text-dark-secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .section {
+        padding: 80px 0 60px;
+      }
+      
+      .about-content {
+        margin-top: 40px;
+      }
+      
+      .contact-info-wrapper {
+        margin-top: 40px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p.lead {
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .hero-btn {
+        padding: 10px 20px;
+      }
+      
+      .project-card {
+        margin-bottom: 30px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease;
+    }
+
+    .loading-spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .alert {
+      display: none;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .alert-success {
+      background-color: #10b981;
+      color: white;
+    }
+
+    .alert-error {
+      background-color: #ef4444;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">JDev</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home" data-i18n="nav-home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects" data-i18n="nav-projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about" data-i18n="nav-about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact" data-i18n="nav-contact">Contact</a>
+          </li>
+          <li class="nav-item d-flex align-items-center ms-3">
+            <button class="lang-toggle" id="langToggle">
+              <span class="lang-text">EN</span>
+            </button>
+          </li>
+          <li class="nav-item d-flex align-items-center ms-3">
+            <button class="mode-toggle" id="modeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 hero-content" data-aos="fade-up">
+          <h1>
+            <span data-i18n="hero-greeting">Hi, I'm</span> 
+            <span class="hero-name">Juan Developer</span>
+          </h1>
+          <p class="lead" data-i18n="hero-title">Frontend Developer & UX/UI Designer</p>
+          <p class="mb-4" data-i18n="hero-description">I build modern, responsive and beautiful web applications that deliver exceptional user experiences.</p>
+          <div>
+            <a href="#projects" class="hero-btn btn-primary" data-i18n="hero-btn-projects">View Projects</a>
+            <a href="#contact" class="hero-btn btn-outline" data-i18n="hero-btn-contact">Contact Me</a>
+          </div>
+          <div class="social-links">
+            <a href="javascript:void(0)" class="social-icon" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="javascript:void(0)" class="social-icon" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="javascript:void(0)" class="social-icon" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left" data-aos-delay="200">
+          <img src="https://cdn.pixabay.com/photo/2018/11/29/21/51/social-media-3846597_1280.png" alt="Developer illustration" class="img-fluid">
+        </div>
+      </div>
+    </div>
+    <div class="hero-shape"></div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up" data-i18n="projects-title">My Projects</h2>
+      <div class="row">
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg" class="project-img" alt="Project 1">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project1-title">E-commerce Dashboard</h3>
+              <p data-i18n="project1-description">A comprehensive dashboard for online store management with analytics, order tracking, and inventory control.</p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Redux</span>
+                <span class="project-tag">Node.js</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg" class="project-img" alt="Project 2">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project2-title">Social Media App</h3>
+              <p data-i18n="project2-description">A responsive social media platform with real-time messaging, profile customization, and content sharing.</p>
+              <div class="project-tags">
+                <span class="project-tag">Vue.js</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">Socket.io</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2017/10/10/21/47/laptop-2838921_1280.jpg" class="project-img" alt="Project 3">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project3-title">Task Management System</h3>
+              <p data-i18n="project3-description">A productivity tool for teams to manage tasks, track progress, and collaborate on projects efficiently.</p>
+              <div class="project-tags">
+                <span class="project-tag">Angular</span>
+                <span class="project-tag">TypeScript</span>
+                <span class="project-tag">Express</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 4 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2015/02/05/08/06/macbook-624707_1280.jpg" class="project-img" alt="Project 4">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project4-title">Music Streaming App</h3>
+              <p data-i18n="project4-description">A web application for streaming music with playlist creation, artist discovery, and personalized recommendations.</p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 5 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2017/08/10/08/47/laptop-2620118_1280.jpg" class="project-img" alt="Project 5">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project5-title">Travel Blog Platform</h3>
+              <p data-i18n="project5-description">A blog platform for travelers to share experiences, upload photos, and connect with fellow adventurers.</p>
+              <div class="project-tags">
+                <span class="project-tag">WordPress</span>
+                <span class="project-tag">PHP</span>
+                <span class="project-tag">MySQL</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 6 -->
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="project-card">
+            <img src="https://cdn.pixabay.com/photo/2017/05/11/11/15/workplace-2303851_1280.jpg" class="project-img" alt="Project 6">
+            <div class="project-content">
+              <h3 class="project-title" data-i18n="project6-title">Weather Forecast App</h3>
+              <p data-i18n="project6-description">A weather application providing real-time forecasts, interactive maps, and severe weather alerts.</p>
+              <div class="project-tags">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">API</span>
+                <span class="project-tag">CSS3</span>
+              </div>
+              <div class="project-links">
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-demo">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                <a href="javascript:void(0)" class="project-link" data-i18n="project-code">View Code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up" data-i18n="about-title">About Me</h2>
+      <div class="row">
+        <div class="col-lg-5" data-aos="fade-right">
+          <img src="https://cdn.pixabay.com/photo/2017/11/02/14/27/model-2911332_1280.jpg" alt="Profile" class="profile-img img-fluid">
+        </div>
+        <div class="col-lg-7 about-content" data-aos="fade-left">
+          <p class="about-text" data-i18n="about-description">I am a passionate Frontend Developer with over 5 years of experience creating beautiful and functional web applications. With a strong foundation in modern JavaScript frameworks and a keen eye for design, I build user-friendly interfaces that deliver exceptional experiences. I love solving complex problems and staying updated with the latest web technologies and trends.</p>
+          
+          <h3 class="mb-4" data-i18n="about-skills">My Skills</h3>
+          
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>HTML5 & CSS3</span>
+              <span>95%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>JavaScript</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>React.js</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Node.js</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>UX/UI Design</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <a href="javascript:void(0)" class="hero-btn btn-primary" data-i18n="about-download-cv">Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up" data-i18n="contact-title">Contact Me</h2>
+      <div class="row">
+        <div class="col-lg-7" data-aos="fade-right">
+          <form id="contactForm" class="contact-form">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="name" placeholder="Your Name" data-i18n-placeholder="contact-name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="email" class="form-control" id="email" placeholder="Your Email" data-i18n-placeholder="contact-email" required>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="subject" placeholder="Subject" data-i18n-placeholder="contact-subject" required>
+            <textarea class="form-control" id="message" placeholder="Your Message" data-i18n-placeholder="contact-message" required></textarea>
+            <button type="submit" class="contact-btn" data-i18n="contact-send">Send Message</button>
+          </form>
+          <div class="loading-spinner" id="loadingSpinner"></div>
+          <div class="alert alert-success" id="successAlert" data-i18n="contact-success">Your message was sent successfully!</div>
+          <div class="alert alert-error" id="errorAlert" data-i18n="contact-error">There was an error sending your message. Please try again.</div>
+        </div>
+        <div class="col-lg-5 contact-info-wrapper" data-aos="fade-left">
+          <div class="contact-info">
+            <div class="info-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="info-text">
+              <h5 data-i18n="contact-location-title">Location</h5>
+              <p data-i18n="contact-location">Madrid, Spain</p>
+            </div>
+          </div>
+          
+          <div class="contact-info">
+            <div class="info-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="info-text">
+              <h5 data-i18n="contact-email-title">Email</h5>
+              <p>contact@juandev.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-info">
+            <div class="info-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="info-text">
+              <h5 data-i18n="contact-phone-title">Phone</h5>
+              <p>+34 123 456 789</p>
+            </div>
+          </div>
+          
+          <div class="contact-info">
+            <div class="info-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="info-text">
+              <h5 data-i18n="contact-website-title">Website</h5>
+              <p>www.juandev.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-social">
+        <a href="javascript:void(0)" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="javascript:void(0)" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="javascript:void(0)" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+      <p class="footer-text" data-i18n="footer-copyright">&copy; 2025 Juan Developer. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script id="app-script">
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
+
+      // Initialize theme from localStorage
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      document.body.className = currentTheme + '-mode';
+      updateThemeToggle(currentTheme);
+
+      // Initialize language from localStorage
+      const currentLang = localStorage.getItem('language') || 'en';
+      updateLanguage(currentLang);
+      updateLangToggleText(currentLang);
+
+      // Initialize navbar active link
+      setupNavbarActive();
+
+      // Setup skill bar animations
+      setupSkillBars();
+
+      // Initialize form
+      setupContactForm();
+    });
+
+    // Theme Toggle
+    const modeToggle = document.getElementById('modeToggle');
+    modeToggle.addEventListener('click', function() {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      const newMode = isDarkMode ? 'light' : 'dark';
+      
+      document.body.className = newMode + '-mode';
+      localStorage.setItem('theme', newMode);
+      updateThemeToggle(newMode);
+    });
+
+    function updateThemeToggle(theme) {
+      const icon = modeToggle.querySelector('i');
+      if (theme === 'dark') {
+        icon.className = 'fas fa-sun';
+      } else {
+        icon.className = 'fas fa-moon';
+      }
+    }
+
+    // Language Toggle
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', function() {
+      const currentLang = localStorage.getItem('language') || 'en';
+      const newLang = currentLang === 'en' ? 'es' : 'en';
+      
+      localStorage.setItem('language', newLang);
+      updateLanguage(newLang);
+      updateLangToggleText(newLang);
+    });
+
+    function updateLangToggleText(lang) {
+      const langText = langToggle.querySelector('.lang-text');
+      langText.textContent = lang.toUpperCase();
+    }
+
+    // Language translations
+    const translations = {
+      en: {
+        // Navbar
+        'nav-home': 'Home',
+        'nav-projects': 'Projects',
+        'nav-about': 'About',
+        'nav-contact': 'Contact',
+        
+        // Hero
+        'hero-greeting': 'Hi, I\'m',
+        'hero-title': 'Frontend Developer & UX/UI Designer',
+        'hero-description': 'I build modern, responsive and beautiful web applications that deliver exceptional user experiences.',
+        'hero-btn-projects': 'View Projects',
+        'hero-btn-contact': 'Contact Me',
+        
+        // Projects
+        'projects-title': 'My Projects',
+        'project1-title': 'E-commerce Dashboard',
+        'project1-description': 'A comprehensive dashboard for online store management with analytics, order tracking, and inventory control.',
+        'project2-title': 'Social Media App',
+        'project2-description': 'A responsive social media platform with real-time messaging, profile customization, and content sharing.',
+        'project3-title': 'Task Management System',
+        'project3-description': 'A productivity tool for teams to manage tasks, track progress, and collaborate on projects efficiently.',
+        'project4-title': 'Music Streaming App',
+        'project4-description': 'A web application for streaming music with playlist creation, artist discovery, and personalized recommendations.',
+        'project5-title': 'Travel Blog Platform',
+        'project5-description': 'A blog platform for travelers to share experiences, upload photos, and connect with fellow adventurers.',
+        'project6-title': 'Weather Forecast App',
+        'project6-description': 'A weather application providing real-time forecasts, interactive maps, and severe weather alerts.',
+        'project-demo': 'Live Demo',
+        'project-code': 'View Code',
+        
+        // About
+        'about-title': 'About Me',
+        'about-description': 'I am a passionate Frontend Developer with over 5 years of experience creating beautiful and functional web applications. With a strong foundation in modern JavaScript frameworks and a keen eye for design, I build user-friendly interfaces that deliver exceptional experiences. I love solving complex problems and staying updated with the latest web technologies and trends.',
+        'about-skills': 'My Skills',
+        'about-download-cv': 'Download CV',
+        
+        // Contact
+        'contact-title': 'Contact Me',
+        'contact-name': 'Your Name',
+        'contact-email': 'Your Email',
+        'contact-subject': 'Subject',
+        'contact-message': 'Your Message',
+        'contact-send': 'Send Message',
+        'contact-success': 'Your message was sent successfully!',
+        'contact-error': 'There was an error sending your message. Please try again.',
+        'contact-location-title': 'Location',
+        'contact-location': 'Madrid, Spain',
+        'contact-email-title': 'Email',
+        'contact-phone-title': 'Phone',
+        'contact-website-title': 'Website',
+        
+        // Footer
+        'footer-copyright': '© 2025 Juan Developer. All rights reserved.'
+      },
+      es: {
+        // Navbar
+        'nav-home': 'Inicio',
+        'nav-projects': 'Proyectos',
+        'nav-about': 'Sobre Mí',
+        'nav-contact': 'Contacto',
+        
+        // Hero
+        'hero-greeting': 'Hola, soy',
+        'hero-title': 'Desarrollador Frontend & Diseñador UX/UI',
+        'hero-description': 'Construyo aplicaciones web modernas, responsivas y hermosas que ofrecen experiencias excepcionales para el usuario.',
+        'hero-btn-projects': 'Ver Proyectos',
+        'hero-btn-contact': 'Contáctame',
+        
+        // Projects
+        'projects-title': 'Mis Proyectos',
+        'project1-title': 'Panel de E-commerce',
+        'project1-description': 'Un panel integral para la gestión de tiendas online con análisis, seguimiento de pedidos y control de inventario.',
+        'project2-title': 'App de Redes Sociales',
+        'project2-description': 'Una plataforma de redes sociales responsiva con mensajería en tiempo real, personalización de perfiles y compartición de contenido.',
+        'project3-title': 'Sistema de Gestión de Tareas',
+        'project3-description': 'Una herramienta de productividad para equipos para gestionar tareas, seguir el progreso y colaborar en proyectos eficientemente.',
+        'project4-title': 'App de Streaming de Música',
+        'project4-description': 'Una aplicación web para streaming de música con creación de listas de reproducción, descubrimiento de artistas y recomendaciones personalizadas.',
+        'project5-title': 'Plataforma de Blog de Viajes',
+        'project5-description': 'Una plataforma de blog para viajeros para compartir experiencias, subir fotos y conectarse con otros aventureros.',
+        'project6-title': 'App de Pronóstico del Tiempo',
+        'project6-description': 'Una aplicación meteorológica que proporciona pronósticos en tiempo real, mapas interactivos y alertas de clima severo.',
+        'project-demo': 'Demo en Vivo',
+        'project-code': 'Ver Código',
+        
+        // About
+        'about-title': 'Sobre Mí',
+        'about-description': 'Soy un Desarrollador Frontend apasionado con más de 5 años de experiencia creando aplicaciones web hermosas y funcionales. Con una sólida base en frameworks modernos de JavaScript y un buen ojo para el diseño, construyo interfaces amigables que ofrecen experiencias excepcionales. Me encanta resolver problemas complejos y mantenerme actualizado con las últimas tecnologías y tendencias web.',
+        'about-skills': 'Mis Habilidades',
+        'about-download-cv': 'Descargar CV',
+        
+        // Contact
+        'contact-title': 'Contáctame',
+        'contact-name': 'Tu Nombre',
+        'contact-email': 'Tu Email',
+        'contact-subject': 'Asunto',
+        'contact-message': 'Tu Mensaje',
+        'contact-send': 'Enviar Mensaje',
+        'contact-success': '¡Tu mensaje fue enviado con éxito!',
+        'contact-error': 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.',
+        'contact-location-title': 'Ubicación',
+        'contact-location': 'Madrid, España',
+        'contact-email-title': 'Correo',
+        'contact-phone-title': 'Teléfono',
+        'contact-website-title': 'Sitio Web',
+        
+        // Footer
+        'footer-copyright': '© 2025 Juan Developer. Todos los derechos reservados.'
+      }
+    };
+
+    function updateLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+      
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      placeholders.forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+          element.placeholder = translations[lang][key];
+        }
+      });
+    }
+
+    // Setup navbar active link
+    function setupNavbarActive() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').slice(1) === current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    }
+
+    // Setup skill bars animation
+    function setupSkillBars() {
+      const skillSection = document.getElementById('about');
+      const skills = document.querySelectorAll('.skill-progress');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            skills.forEach(skill => {
+              skill.style.width = skill.parentElement.previousElementSibling.lastElementChild.textContent;
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(skillSection);
+    }
+
+    // Setup contact form
+    function setupContactForm() {
+      const contactForm = document.getElementById('contactForm');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const successAlert = document.getElementById('successAlert');
+      const errorAlert = document.getElementById('errorAlert');
+
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Hide any existing alerts
+        successAlert.style.display = 'none';
+        errorAlert.style.display = 'none';
+        
+        // Show loading spinner
+        loadingSpinner.style.display = 'block';
+        
+        // Simulate form submission
+        setTimeout(() => {
+          loadingSpinner.style.display = 'none';
+          
+          // Randomly decide if submission is successful (for demo purposes)
+          const isSuccess = Math.random() > 0.2; // 80% success rate
+          
+          if (isSuccess) {
+            successAlert.style.display = 'block';
+            contactForm.reset();
+          } else {
+            errorAlert.style.display = 'block';
+          }
+          
+          // Hide alert after 5 seconds
+          setTimeout(() => {
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+          }, 5000);
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
